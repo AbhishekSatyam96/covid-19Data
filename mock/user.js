@@ -60,8 +60,8 @@ const adminUsers = [
   },
   {
     id: 2,
-    username: '吴彦祖',
-    password: '123456',
+    username: 'Abhishek',
+    password: 'Satyam',
     permissions: userPermission.DEVELOPER,
     avatar: randomAvatar(),
   },

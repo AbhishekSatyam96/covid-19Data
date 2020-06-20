@@ -14,13 +14,13 @@ function Weather({ city, icon, dateTime, temperature, name, loading }) {
               backgroundImage: `url(${icon})`,
             }}
           />
-          <p>{name}</p>
+          {/* <p>{name}</p> */}
         </div>
         <div className={styles.right}>
-          <h1 className={styles.temperature}>{`${temperature}°`}</h1>
-          <p className={styles.description}>
+          <h1 className={styles.temperature}>{`${temperature}°`}C</h1>
+          {/* <p className={styles.description}>
             {city},{dateTime}
-          </p>
+          </p> */}
         </div>
       </div>
     </Spin>

@@ -4,6 +4,7 @@ import { connect } from 'umi'
 import { Row, Col, Card } from 'antd'
 import { Color } from 'utils'
 import { Page, ScrollBar } from 'components'
+import axios from 'axios'
 import {
   NumberCard,
   Quote,
@@ -31,7 +32,36 @@ const bodyStyle = {
   loading,
 }))
 class Dashboard extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      totalConfirmed: 0,
+      totalRecovered: 0,
+      totalDeath: 0,
+      countryData: []
+    }
+  }
+  componentDidMount = () => {
+    axios
+      .get(`https://api.covid19api.com/summary`)
+      .then((res) => {
+        console.log("res", res);
+        this.setState({
+          totalConfirmed: res.data.Global.TotalConfirmed,
+          totalRecovered: res.data.Global.TotalRecovered,
+          totalDeath: res.data.Global.TotalDeaths,
+          countryData: res.data.Countries
+        })
+      })
+      .catch((err) => {
+        console.error("error", err);
+      })
+  }
+
   render() {
+    const { totalConfirmed,
+      totalRecovered,
+      totalDeath, countryData } = this.state;
     const userDetail = store.get('user')
     const { avatar, username } = userDetail
     const { dashboard, loading } = this.props
@@ -47,9 +77,36 @@ class Dashboard extends PureComponent {
       cpu,
       user,
     } = dashboard
+    console.log("recentSales", recentSales);
+    const newNumbers = [
+      {
+        icon: 'pay-circle-o',
+        color: Color.green,
+        title: 'Global Confirmed',
+        number: totalConfirmed,
+      },
+      {
+        icon: 'team',
+        color: Color.blue,
+        title: 'Global Recovered',
+        number: totalRecovered,
+      },
+      {
+        icon: 'message',
+        color: Color.purple,
+        title: 'Global Death',
+        number: totalDeath,
+      },
+      // {
+      //   // icon: 'FastBackwardOutlined',
+      //   color: Color.red,
+      //   title: 'Referrals',
+      //   number: 4324,
+      // },
+    ]
 
-    const numberCards = numbers.map((item, key) => (
-      <Col key={key} lg={6} md={12}>
+    const numberCards = newNumbers.map((item, key) => (
+      <Col key={key} lg={8} md={12}>
         <NumberCard {...item} />
       </Col>
     ))
@@ -61,7 +118,19 @@ class Dashboard extends PureComponent {
       >
         <Row gutter={24}>
           {numberCards}
-          <Col lg={18} md={24}>
+          <Col lg={24} md={24}>
+            <Card bordered={false} {...bodyStyle}>
+              <RecentSales data={countryData} />
+            </Card>
+          </Col>
+          {/* <Col lg={12} md={24}>
+            <Card bordered={false} {...bodyStyle}>
+              <ScrollBar>
+                <Comments data={comments} />
+              </ScrollBar>
+            </Card>
+          </Col> */}
+          {/* <Col lg={18} md={24}>
             <Card
               bordered={false}
               bodyStyle={{
@@ -70,10 +139,10 @@ class Dashboard extends PureComponent {
             >
               <Sales data={sales} />
             </Card>
-          </Col>
-          <Col lg={6} md={24}>
+          </Col> */}
+          <Col lg={24} md={24}>
             <Row gutter={24}>
-              <Col lg={24} md={12}>
+              <Col lg={12} md={12}>
                 <Card
                   bordered={false}
                   className={styles.weather}
@@ -89,7 +158,7 @@ class Dashboard extends PureComponent {
                   />
                 </Card>
               </Col>
-              <Col lg={24} md={12}>
+              <Col lg={12} md={12}>
                 <Card
                   bordered={false}
                   className={styles.quote}
@@ -106,19 +175,8 @@ class Dashboard extends PureComponent {
               </Col>
             </Row>
           </Col>
-          <Col lg={12} md={24}>
-            <Card bordered={false} {...bodyStyle}>
-              <RecentSales data={recentSales} />
-            </Card>
-          </Col>
-          <Col lg={12} md={24}>
-            <Card bordered={false} {...bodyStyle}>
-              <ScrollBar>
-                <Comments data={comments} />
-              </ScrollBar>
-            </Card>
-          </Col>
-          <Col lg={24} md={24}>
+
+          {/* <Col lg={24} md={24}>
             <Card
               bordered={false}
               bodyStyle={{
@@ -147,7 +205,7 @@ class Dashboard extends PureComponent {
             >
               <User {...user} avatar={avatar} username={username} />
             </Card>
-          </Col>
+          </Col> */}
         </Row>
       </Page>
     )

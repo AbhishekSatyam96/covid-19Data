@@ -100,10 +100,10 @@ const Dashboard = Mock.mock({
     },
   ],
   quote: {
-    name: 'Joho Doe',
-    title: 'Graphic Designer',
+    name: 'Abhishek Satyam',
+    title: 'Software Engineer',
     content:
-      "I'm selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you can't handle me at my worst, then you sure as hell don't deserve me at my best.",
+      "This web-app will provide you the daily basis of the covid-19 data from worldwide.",
     avatar:
       'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236',
   },

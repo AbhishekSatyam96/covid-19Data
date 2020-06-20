@@ -43,94 +43,94 @@ class Header extends PureComponent {
             </Fragment>
           }
         >
-          <Menu.Item key="SignOut">
+          {/* <Menu.Item key="SignOut">
             <Trans>Sign out</Trans>
-          </Menu.Item>
+          </Menu.Item> */}
         </SubMenu>
       </Menu>,
     ]
 
-    if (config.i18n) {
-      const { languages } = config.i18n
-      const currentLanguage = languages.find(
-        item => item.key === i18n._language
-      )
+    // if (config.i18n) {
+    //   const { languages } = config.i18n
+    //   const currentLanguage = languages.find(
+    //     item => item.key === i18n._language
+    //   )
 
-      rightContent.unshift(
-        <Menu
-          key="language"
-          selectedKeys={[currentLanguage.key]}
-          onClick={data => {
-            setLocale(data.key)
-          }}
-          mode="horizontal"
-        >
-          <SubMenu title={<Avatar size="small" src={currentLanguage.flag} />}>
-            {languages.map(item => (
-              <Menu.Item key={item.key}>
-                <Avatar
-                  size="small"
-                  style={{ marginRight: 8 }}
-                  src={item.flag}
-                />
-                {item.title}
-              </Menu.Item>
-            ))}
-          </SubMenu>
-        </Menu>
-      )
-    }
+    //   rightContent.unshift(
+    //     <Menu
+    //       key="language"
+    //       selectedKeys={[currentLanguage.key]}
+    //       onClick={data => {
+    //         setLocale(data.key)
+    //       }}
+    //       mode="horizontal"
+    //     >
+    //       <SubMenu title={<Avatar size="small" src={currentLanguage.flag} />}>
+    //         {languages.map(item => (
+    //           <Menu.Item key={item.key}>
+    //             <Avatar
+    //               size="small"
+    //               style={{ marginRight: 8 }}
+    //               src={item.flag}
+    //             />
+    //             {item.title}
+    //           </Menu.Item>
+    //         ))}
+    //       </SubMenu>
+    //     </Menu>
+    //   )
+    // }
 
-    rightContent.unshift(
-      <Popover
-        placement="bottomRight"
-        trigger="click"
-        key="notifications"
-        overlayClassName={styles.notificationPopover}
-        getPopupContainer={() => document.querySelector('#primaryLayout')}
-        content={
-          <div className={styles.notification}>
-            <List
-              itemLayout="horizontal"
-              dataSource={notifications}
-              locale={{
-                emptyText: <Trans>You have viewed all notifications.</Trans>,
-              }}
-              renderItem={item => (
-                <List.Item className={styles.notificationItem}>
-                  <List.Item.Meta
-                    title={
-                      <Ellipsis tooltip lines={1}>
-                        {item.title}
-                      </Ellipsis>
-                    }
-                    description={moment(item.date).fromNow()}
-                  />
-                  <RightOutlined style={{ fontSize: 10, color: '#ccc' }} />
-                </List.Item>
-              )}
-            />
-            {notifications.length ? (
-              <div
-                onClick={onAllNotificationsRead}
-                className={styles.clearButton}
-              >
-                <Trans>Clear notifications</Trans>
-              </div>
-            ) : null}
-          </div>
-        }
-      >
-        <Badge
-          count={notifications.length}
-          dot
-          offset={[-10, 10]}
-          className={styles.iconButton}
-        >
-          <BellOutlined className={styles.iconFont} />
-        </Badge>
-      </Popover>
-    )
+    // rightContent.unshift(
+    //   <Popover
+    //     placement="bottomRight"
+    //     trigger="click"
+    //     key="notifications"
+    //     overlayClassName={styles.notificationPopover}
+    //     getPopupContainer={() => document.querySelector('#primaryLayout')}
+    //     content={
+    //       <div className={styles.notification}>
+    //         <List
+    //           itemLayout="horizontal"
+    //           dataSource={notifications}
+    //           locale={{
+    //             emptyText: <Trans>You have viewed all notifications.</Trans>,
+    //           }}
+    //           renderItem={item => (
+    //             <List.Item className={styles.notificationItem}>
+    //               <List.Item.Meta
+    //                 title={
+    //                   <Ellipsis tooltip lines={1}>
+    //                     {item.title}
+    //                   </Ellipsis>
+    //                 }
+    //                 description={moment(item.date).fromNow()}
+    //               />
+    //               <RightOutlined style={{ fontSize: 10, color: '#ccc' }} />
+    //             </List.Item>
+    //           )}
+    //         />
+    //         {notifications.length ? (
+    //           <div
+    //             onClick={onAllNotificationsRead}
+    //             className={styles.clearButton}
+    //           >
+    //             <Trans>Clear notifications</Trans>
+    //           </div>
+    //         ) : null}
+    //       </div>
+    //     }
+    //   >
+    //     <Badge
+    //       count={notifications.length}
+    //       dot
+    //       offset={[-10, 10]}
+    //       className={styles.iconButton}
+    //     >
+    //       <BellOutlined className={styles.iconFont} />
+    //     </Badge>
+    //   </Popover>
+    // )
 
     return (
       <Layout.Header
@@ -151,7 +151,8 @@ class Header extends PureComponent {
             })}
           />
         </div>
-
+        <h4>A Real time information data of covid-19 by
+          <a href ="https://www.linkedin.com/in/abhishek-satyam/" target="_blank"> Abhishek Satyam</a></h4>
         <div className={styles.rightContainer}>{rightContent}</div>
       </Layout.Header>
     )

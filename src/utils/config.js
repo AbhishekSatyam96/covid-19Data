@@ -1,6 +1,6 @@
 module.exports = {
   siteName: 'Covid-19 Data',
-  copyright: 'Ant Design Admin  ©2020 zuiidea',
+  copyright: '©2020 Abhishek Satyam',
   logoPath: '/logo.svg',
   apiPrefix: '/api/v1',
   fixedHeader: true, // sticky primary layout header

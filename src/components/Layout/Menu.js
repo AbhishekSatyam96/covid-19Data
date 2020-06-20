@@ -38,22 +38,28 @@ class SiderMenu extends PureComponent {
   }
 
   generateMenus = data => {
-    return data.map(item => {
-      if (item.children) {
-        return (
-          <SubMenu
-            key={item.id}
-            title={
-              <Fragment>
-                {item.icon && <LegacyIcon type={item.icon} />}
-                <span>{item.name}</span>
-              </Fragment>
-            }
-          >
-            {this.generateMenus(item.children)}
-          </SubMenu>
-        )
-      }
+    console.log("generateMenus",data);
+    const tempData = [];
+    tempData.push(data[0]);
+    tempData.push(data[1]);
+    tempData[0].name = 'Global';
+    tempData[1].name = 'Country Wise';
+    return tempData.map(item => {
+      // if (item.children) {
+      //   return (
+      //     <SubMenu
+      //       key={item.id}
+      //       title={
+      //         <Fragment>
+      //           {item.icon && <LegacyIcon type={item.icon} />}
+      //           <span>{item.name}</span>
+      //         </Fragment>
+      //       }
+      //     >
+      //       {this.generateMenus(item.children)}
+      //     </SubMenu>
+      //   )
+      // }
       return (
         <Menu.Item key={item.id}>
           <NavLink to={item.route || '#'}>

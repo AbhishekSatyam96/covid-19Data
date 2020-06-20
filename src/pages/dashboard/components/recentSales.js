@@ -27,34 +27,43 @@ const status = {
 function RecentSales({ data }) {
   const columns = [
     {
-      title: 'NAME',
-      dataIndex: 'name',
+      title: 'Country',
+      dataIndex: 'Country',
     },
     {
-      title: 'STATUS',
-      dataIndex: 'status',
-      render: text => <Tag color={status[text].color}>{status[text].text}</Tag>,
+      title: 'Total Confirmed',
+      dataIndex: 'TotalConfirmed',
+      // render: text => <Tag color={status[text].color}>{status[text].text}</Tag>,
     },
     {
-      title: 'DATE',
-      dataIndex: 'date',
-      render: text => moment(text).format('YYYY-MM-DD'),
+      title: 'Total Deaths',
+      dataIndex: 'TotalDeaths',
+      // render: text => moment(text).format('YYYY-MM-DD'),
     },
     {
-      title: 'PRICE',
-      dataIndex: 'price',
-      render: (text, it) => (
-        <span style={{ color: status[it.status].color }}>${text}</span>
-      ),
+      title: 'Total Recovered',
+      dataIndex: 'TotalRecovered',
+      // render: (text, it) => (
+      //   <span style={{ color: status[it.status].color }}>${text}</span>
+      // ),
     },
   ]
+  const tempData = [];
+  tempData.push(data[177]);
+  tempData.push(data[23]);
+  tempData.push(data[138]);
+  tempData.push(data[76]);
+  tempData.push(data[176]);
+  tempData.push(data[156]);
   return (
     <div className={styles.recentsales}>
+      <h3>Top 6 most corona cases countries</h3>
       <Table
         pagination={false}
         columns={columns}
-        rowKey={(record, key) => key}
+        // rowKey={(record, key) => key}
         dataSource={data.filter((item, key) => key < 5)}
+      // dataSource={data}
       />
     </div>
   )
