@@ -19,7 +19,8 @@ class SiderMenu extends PureComponent {
   }
 
   onOpenChange = openKeys => {
-    const { menus } = this.props
+    const { menus } = this.props;
+
     const rootSubmenuKeys = menus.filter(_ => !_.menuParentId).map(_ => _.id)
 
     const latestOpenKey = openKeys.find(
@@ -38,28 +39,28 @@ class SiderMenu extends PureComponent {
   }
 
   generateMenus = data => {
-    console.log("generateMenus",data);
-    const tempData = [];
-    tempData.push(data[0]);
-    tempData.push(data[1]);
-    tempData[0].name = 'Global';
-    tempData[1].name = 'Country Wise';
-    return tempData.map(item => {
-      // if (item.children) {
-      //   return (
-      //     <SubMenu
-      //       key={item.id}
-      //       title={
-      //         <Fragment>
-      //           {item.icon && <LegacyIcon type={item.icon} />}
-      //           <span>{item.name}</span>
-      //         </Fragment>
-      //       }
-      //     >
-      //       {this.generateMenus(item.children)}
-      //     </SubMenu>
-      //   )
-      // }
+    if(data && data[0] && data[0].name){
+      data[0].name = 'Global';
+    }
+    if(data && data[0] && data[0].name){
+      data[1].name = 'Country Wise';
+    }
+    return data.map(item => {
+      if (item.children) {
+        return (
+          <SubMenu
+            key={item.id}
+            title={
+              <Fragment>
+                {item.icon && <LegacyIcon type={item.icon} />}
+                <span>{item.name}</span>
+              </Fragment>
+            }
+          >
+            {this.generateMenus(item.children)}
+          </SubMenu>
+        )
+      }
       return (
         <Menu.Item key={item.id}>
           <NavLink to={item.route || '#'}>
@@ -99,7 +100,6 @@ class SiderMenu extends PureComponent {
       : {
           openKeys: this.state.openKeys,
         }
-
     return (
       <Menu
         mode="inline"

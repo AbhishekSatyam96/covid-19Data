@@ -103,7 +103,7 @@ const Dashboard = Mock.mock({
     name: 'Abhishek Satyam',
     title: 'Software Engineer',
     content:
-      "This web-app will provide you the daily basis of the covid-19 data from worldwide.",
+      "Welcome !. Here you can see the Confirmed, Recovered and Death of people from covid-19 country-wise till yet, as well as can also get the same infomation of present day ",
     avatar:
       'http://img.hb.aicdn.com/bc442cf0cc6f7940dcc567e465048d1a8d634493198c4-sPx5BR_fw236',
   },

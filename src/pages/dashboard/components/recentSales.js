@@ -48,16 +48,16 @@ function RecentSales({ data }) {
       // ),
     },
   ]
-  const tempData = [];
-  tempData.push(data[177]);
-  tempData.push(data[23]);
-  tempData.push(data[138]);
-  tempData.push(data[76]);
-  tempData.push(data[176]);
-  tempData.push(data[156]);
+  // const tempData = [];
+  // tempData.push(data[177]);
+  // tempData.push(data[23]);
+  // tempData.push(data[138]);
+  // tempData.push(data[76]);
+  // tempData.push(data[176]);
+  // tempData.push(data[156]);
   return (
     <div className={styles.recentsales}>
-      <h3>Top 6 most corona cases countries</h3>
+      {/* <h3>Top 6 most corona cases countries</h3> */}
       <Table
         pagination={false}
         columns={columns}
